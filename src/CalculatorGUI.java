@@ -18,7 +18,7 @@ public class CalculatorGUI{
         // make it uneditable the text field
         textField.setEditable(false);
 
-
+        // creating each corresponding button objects
         JButton zero = new JButton("0");
         JButton one = new JButton("1");
         JButton two = new JButton("2");
@@ -40,6 +40,7 @@ public class CalculatorGUI{
         JButton AC = new JButton("AC");
 
         // add the buttons to button panel
+
         buttonPanel.add(textField);
         buttonPanel.add(AC);
         buttonPanel.add(negativePositive);
@@ -61,8 +62,10 @@ public class CalculatorGUI{
         buttonPanel.add(comma);
         buttonPanel.add(equal);
 
+
         // add text field to main panel
         mainPanel.add(buttonPanel, BorderLayout.CENTER);
+
         frame.getContentPane().add(mainPanel);
         frame.setSize(350,235);
         frame.setVisible(true);
