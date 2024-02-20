@@ -3,15 +3,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CalculatorGUI implements ActionListener {
+public class Calculator implements ActionListener {
     // our instance variables
     private JFrame frame = new JFrame("Calculator");
     private JTextField textField;
     private JPanel mainPanel, buttonPanel;
     private JButton zero, one, two, three, four, five, six, seven, eight, nine;
     private JButton comma, equal, plus, minus, multiply, divide, modulus, negativePositive, AC;
-    private String currentNumber = "";
+
     private String currentOperator = "";
+    private double num1, num2, result;
+
 
     // in start GUI function i am trying to build the front-end my app
     public void startGUI() {
@@ -39,16 +41,19 @@ public class CalculatorGUI implements ActionListener {
         seven = new JButton("7");
         eight = new JButton("8");
         nine = new JButton("9");
+
+
         // operations
         plus = new JButton("+");
         minus = new JButton("-");
         multiply = new JButton("*");
-        divide = new JButton("÷");
-        comma = new JButton(",");
+        divide = new JButton("/");
+        comma = new JButton(".");
         equal = new JButton("=");
         modulus = new JButton("%");
         negativePositive = new JButton("+/-");
         AC = new JButton("AC");
+
         // add action listener to each button
 
         zero.addActionListener(this);
@@ -101,109 +106,72 @@ public class CalculatorGUI implements ActionListener {
         // set size and visibility and size
         frame.getContentPane().add(mainPanel);
         frame.setSize(350, 235);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
+    // assigned and declared two String array to help override method
+    String[] numberButton = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    String[] functionalOperator = {"+","-","*","/",".","=","%","+/-","AC"};
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JButton clickedButton;
-        clickedButton = (JButton) e.getSource();
-
+        JButton clickedButton = (JButton) e.getSource(); // Get the button that was clicked
         String buttonText = clickedButton.getText();
+        // here i am trying to concat if number clicked without any functional operator
 
-        switch (buttonText) {
-            // till i encounter with break my currentNumber is going to merge with pressed buttonText
-            // and we are reshowing the current value by setText method of currentNumber
-            case "0":
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7":
-            case "8":
-            case "9":
-                currentNumber += buttonText;
-                textField.setText(currentNumber);
-                break;
-
-            case ",":
-                if (!currentNumber.contains(".")) {
-                    currentNumber += ".";
-                    textField.setText(currentNumber);
-                }
-                break;
-            case "+":
-            case "-":
-            case "*":
-            case "÷":
-            case "%":
-                handleOperator(buttonText);
-                break;
-            case "+/-":
-                changeSign();
-                break;
-            case "AC":
-                currentNumber = "";
-                currentOperator = "";
+        for (int i = 0; i < 10; i++) {
+            if (buttonText.equals(numberButton[i])) {
+                textField.setText(textField.getText() + numberButton[i]);
+            }
+        }
+        // also need to consider decimal first if checks if "." clicked check if there is no prior "."
+        // if not then concat the textfield with "." operator
+        if (buttonText.equals(functionalOperator[4])) {
+            if (!textField.getText().contains(".")) {
+                textField.setText(textField.getText().concat(functionalOperator[4]));
+            }
+        }
+        // handle + - / * operator. when button clicked my number1 is saved and text field got emptied for num2
+        for (int j = 0; j < 4; j++) {
+            if (buttonText.equals(functionalOperator[j])) {
+                num1 = Double.parseDouble(textField.getText());
+                currentOperator = functionalOperator[j];
                 textField.setText("");
-                break;
-            case "=":
-                calculateResult();
-                break;
-
-        }
-    }
-
-    private void changeSign() {
-        if (!currentNumber.isEmpty()) {
-            double num = Double.parseDouble(currentNumber);
-            num = -num;
-            currentNumber = String.valueOf(num);
-            textField.setText(currentNumber);
-        }
-    }
-
-    public void handleOperator(String operator) {
-        if (!currentNumber.isEmpty()) {
-            if (!currentOperator.isEmpty()) {
-                calculateResult();
             }
-            currentOperator = operator;
-            currentNumber = "";
         }
-    }
+        // num2 will be stored only if we have pressed = in our GUI
+        if (buttonText.equals("=")) {
+            num2 = Double.parseDouble(textField.getText());
+            if (currentOperator.equals("+")) {
+                result = num1 + num2;
+                textField.setText(String.valueOf(result));
+                num1 = result;
+            } else if (currentOperator.equals("-")) {
+                result = num1 - num2;
+                textField.setText(String.valueOf(result));
+                num1 = result;
+            } else if (currentOperator.equals("*"))
+                result = num1 * num2;
+                textField.setText(String.valueOf(result));
+                num1 = result;
+            } else if (currentOperator.equals("/")) {
+                result = num1 / num2;
+                textField.setText(String.valueOf(result));
+                num1 = result;
+        }
+        if (buttonText.equals("%")) {
+            num1 = (Double.parseDouble(textField.getText()))/100;
+            textField.setText(String.valueOf(num1));
+        }
 
-    public void calculateResult() {
-        if (!currentNumber.isEmpty() && !currentOperator.isEmpty()) {
-            double num1 = Double.parseDouble(textField.getText());
-            double num2 = Double.parseDouble(currentNumber);
+        if (buttonText.equals("+/-")) {
+            num1 = Double.parseDouble(textField.getText());
+            textField.setText(String.valueOf(-1 * num1));
+        }
 
-            switch (currentOperator) {
-                case "+":
-                    currentNumber = String.valueOf(num1 + num2);
-                    break;
-                case "-":
-                    currentNumber = String.valueOf(num1 - num2);
-                    break;
-                case "*":
-                    currentNumber = String.valueOf(num1 * num2);
-                    break;
-                case "÷":
-                    if (num2 != 0) {
-                        currentNumber = String.valueOf(num1 / num2);
-                    } else {
-                        currentNumber = "Error";
-                    }
-                    break;
-                case "%":
-                    currentNumber = String.valueOf(num1 % num2);
-                    break;
-            }
-
-            textField.setText(currentNumber);
+        if (buttonText.equals("AC")) {
             currentOperator = "";
+            textField.setText("");
         }
     }
 }
