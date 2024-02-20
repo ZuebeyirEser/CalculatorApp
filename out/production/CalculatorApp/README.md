@@ -36,6 +36,9 @@ Feel free to contribute to this project by:
    - Reporting bugs and suggesting improvements.
    - Forking the repository and creating pull requests with your changes.
    
+# Screenshots:
+
+Screenshot of your calculator app: ![Screenshot](ScreenshotCalculatorApp.png)
 
 # License:
 
@@ -45,7 +48,6 @@ Additional Notes:
 
    - You can customize the look and feel of the calculator by modifying the Swing components in the Calculator class.
    - This is a basic implementation and can be extended to include more features like advanced mathematical functions, memory operations, etc.   
-   
    
    
    
