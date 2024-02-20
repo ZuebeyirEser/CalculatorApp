@@ -38,7 +38,7 @@ Feel free to contribute to this project by:
    
 # Screenshots:
 
-Screenshot of your calculator app: ![Screenshot](ScreenshotCalculator.png)
+Screenshot of your calculator app: ![Screenshot](ScreenshotCalculatorApp.png)
 
 # License:
 
