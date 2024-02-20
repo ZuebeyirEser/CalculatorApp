@@ -36,6 +36,9 @@ Feel free to contribute to this project by:
    - Reporting bugs and suggesting improvements.
    - Forking the repository and creating pull requests with your changes.
    
+# Screenshots:
+
+Screenshot of your calculator app: ![Screenshot](ScreenshotCalculator.png)
 
 # License:
 
