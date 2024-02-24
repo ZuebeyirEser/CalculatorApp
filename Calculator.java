@@ -70,6 +70,7 @@ public class Calculator implements ActionListener {
         comma.addActionListener(this);
         equal.addActionListener(this);
         plus.addActionListener(this);
+        minus.addActionListener(this);
         multiply.addActionListener(this);
         divide.addActionListener(this);
         modulus.addActionListener(this);
@@ -132,30 +133,43 @@ public class Calculator implements ActionListener {
             }
         }
         // handle + - / * operator. when button clicked my number1 is saved and text field got emptied for num2
-        for (int j = 0; j < 4; j++) {
-            if (buttonText.equals(functionalOperator[j])) {
-                num1 = Double.parseDouble(textField.getText());
-                currentOperator = functionalOperator[j];
-                textField.setText("");
-            }
+        if (buttonText.equals(functionalOperator[0])) {
+            num1 = Double.parseDouble(textField.getText());
+            currentOperator = functionalOperator[0];
+            textField.setText("");
+        }
+        if (buttonText.equals(functionalOperator[1])) {
+            num1 = Double.parseDouble(textField.getText());
+            currentOperator = functionalOperator[1];
+            textField.setText("");
+        }
+        if (buttonText.equals(functionalOperator[2])) {
+            num1 = Double.parseDouble(textField.getText());
+            currentOperator = functionalOperator[2];
+            textField.setText("");
+        }
+        if (buttonText.equals(functionalOperator[3])) {
+            num1 = Double.parseDouble(textField.getText());
+            currentOperator = functionalOperator[3];
+            textField.setText("");
         }
         // num2 will be stored only if we have pressed = in our GUI
         if (buttonText.equals("=")) {
             num2 = Double.parseDouble(textField.getText());
             if (currentOperator.equals("+")) {
-                result = num1 + num2;
+                result = (num1 + num2);
                 textField.setText(String.valueOf(result));
                 num1 = result;
             } else if (currentOperator.equals("-")) {
-                result = num1 - num2;
+                result = (num1-num2);
                 textField.setText(String.valueOf(result));
                 num1 = result;
             } else if (currentOperator.equals("*"))
-                result = num1 * num2;
+                result = (num1 * num2);
                 textField.setText(String.valueOf(result));
                 num1 = result;
             } else if (currentOperator.equals("/")) {
-                result = num1 / num2;
+                result = (num1 / num2);
                 textField.setText(String.valueOf(result));
                 num1 = result;
         }
