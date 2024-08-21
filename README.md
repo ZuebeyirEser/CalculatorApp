@@ -1,6 +1,6 @@
 # CalculatorApp
 
-Perform basic arithmetic. Enjoy a user-friendly interface, robust features, and the freedom of open-source under the MIT license. Feel free to contribute or suggest improvements.
+Perform basic arithmetic.
 
 # Features
 - Supports basic arithmetic operations: addition, subtraction, multiplication, and division.
@@ -30,13 +30,7 @@ This example assumes you're using IntelliJ IDEA.
 Right-click on the StartCalculatorApp class and select "Run".
 
 
-# Contributing:
 
-Feel free to contribute to this project by:
-
-   - Reporting bugs and suggesting improvements.
-   - Forking the repository and creating pull requests with your changes.
-   
 # Screenshots:
 
 Screenshot of the calculator app: ![Screenshot](ScreenshotCalculatorApp.png)
