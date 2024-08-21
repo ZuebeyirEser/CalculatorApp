@@ -1,4 +1,5 @@
 # CalculatorApp
+
 Perform basic arithmetic. Enjoy a user-friendly interface, robust features, and the freedom of open-source under the MIT license. Feel free to contribute or suggest improvements.
 
 # Features
@@ -40,9 +41,8 @@ Feel free to contribute to this project by:
 
 Screenshot of the calculator app: ![Screenshot](ScreenshotCalculatorApp.png)
 
-# License:
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+
 
 Additional Notes:
 
